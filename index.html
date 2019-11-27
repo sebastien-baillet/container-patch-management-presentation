@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Container & Security</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/adeo-black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Container & Patch management</h1>
+            <p>By <a href="https://www.linkedin.com/in/s%C3%A9bastien-baillet-0b20b19a/">Sébastien Baillet</a> From <br><a href="https://www.thalesgroup.com"><img src="./images/thales.png" style="border: 0; width: 200px;vertical-align: bottom" alt="Thales"></a></p>
+        </section>
+
+        <!-- Summary -->
+        <section>
+            <h2>Summary</h2>
+            <ul>
+                <li class="fragment"><a href="#/patch-management">Patch management: why and what for?</a></li>
+                <li class="fragment"><a href="#/container">Container</a></li>
+                <li class="fragment"><a href="#/container-patch-management">Container & Patch Management</a></li>
+            </ul>
+        </section>
+
+        <!-- Patch management -->
+        <section id="patch-management">
+            <h2>Patch management: why and what for?</h2>
+        </section>
+
+        <section>
+            <h2>Patch management: purpose</h2>
+            <ul>
+                <li>Avoid known vulnerabilities in third party applications on servers</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Patch management: how to?</h2>
+            <ul>
+                <li>Patch as frequently as possible</li>
+                <li>Know the exact state of the patch management on your server pool at any moment</li>
+            </ul>
+        </section>
+
+        <!-- Container -->
+        <section id="container">
+            <h2>Container</h2>
+            <ul>
+                <li>Containers should be seen as disposable application</li>
+                <li>Good security practices encourage:
+                    <ul>
+                        <li>Container to be <em>read-only</em></li>
+                        <li>CaaS to deny <em>root</em> container</li>
+                        <li>CaaS to deny <em>setuid</em> manipulation</li>
+                        <li>Container not to have package manager</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>More information...</h2>
+            <p>... on container & security can be found in ADEO GitHub at: </p><p><a href="https://github.com/adeo/container-security">https://github.com/adeo/container-security</a></p>
+            <img src="images/adeo-github-container-security-repository.png">
+        </section>
+
+        <!-- Container & patch management -->
+        <section id="container-patch-management">
+            <h2>Container & Patch Management</h2>
+        </section>
+
+        <section>
+            <h2>So...?</h2>
+            <ul>
+                <li>Update dependencies in your image</li>
+                <li>Deploy often</li>
+                <li>Scan your images regularly</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Golden source</h2>
+            <p>The image you build your image from should be trustable (i.e. one of the items below should apply):</p>
+            <ul>
+                <li class="fragment">the base image is build and maintained by your organisation,</li>
+                <li class="fragment">the base image is tagged as official in Docker Hub, or OpenShift Registry,</li>
+                <li class="fragment">at least, the base image is a Docker Hub automated build, and its base image is tagged official in Docker Hub, and you have made a sanity check on the Dockerfile and on the tools embedded.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Golden source</h2>
+            <p>At the moment we're trying to make <a href="">Dockerfiles-collection</a> the ADEO images reference</p>
+            <img src="images/adeo-github-dockerfiles-collection-repository.png" alt="dockerfiles-collection url">
+        </section>
+
+        <section>
+            <h2>Image scanner</h2>
+            <ul>
+                <li><a href="https://adeo-xray.jfrog.io/">X-Ray from JFrog</a></li>
+                <li><a href="https://www.jfrog.com/confluence/display/XRAY/">X-Ray documentation</a> (no specific ADEO documentation at the moment)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Dependency scanner</h2>
+            <p>80% of your code is not made by your team. Use scanner to detect known vulnerabilities in your dependencies.</p>
+            <p>For example, <a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">Dependency Check</a>.</p>
+        </section>
+
+        <section>
+            <h2>Random useful links</h2>
+            <ul>
+                <li><a href="https://www.owasp.org/">OWASP</a></li>
+                <li><a href="https://www.cisecurity.org/cis-benchmarks/">CIS Benchmarks</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Any questions?</h1>
+        </section>
+
+        <section>
+            <h2>Thank you for your attention</h2>
+            <a href="https://iwdrm.tumblr.com/">
+                <img src="images/thx.gif" style="border: 0" alt="Thank you">
+            </a>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        transition: 'fade',
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true },
+            { src: 'plugin/embed-tweet/embed-tweet.js' }
+         ]
+    });
+
+    Reveal.configure({ slideNumber: 'c/t' });
+</script>
+</body>
+
+</html>
